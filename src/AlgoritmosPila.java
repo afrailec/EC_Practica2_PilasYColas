@@ -27,12 +27,45 @@ public class AlgoritmosPila {
     }
 
     public void sumaEnFondoPila(Pila pila) {
-        //Completar
+        sumaEnFondoPilaRecursivo(pila, 0);
+    }
+
+    public void sumaEnFondoPilaRecursivo(Pila pila, int suma){
+        if(!pila.vacia()){
+            int elem = pila.desapilar();
+            suma = suma + elem;
+            sumaEnFondoPilaRecursivo(pila, suma);
+            pila.apilar(elem);
+        } else {
+            pila.apilar(suma);
+        }
     }
 
     public void segunNumQuitar(Pila pilaOrigen) {
         //Completar
+        int numElem = pilaOrigen.getNumElementos();
+        if(numElem%2==0){
+            if(!pilaOrigen.vacia()) {
+                segunNumQuitarRecursivo(pilaOrigen);
+            }
+
+        }else{
+            if(!pilaOrigen.vacia()){
+                pilaOrigen.desapilar();
+            }
+        }
     }
+
+    public void segunNumQuitarRecursivo(Pila pilaOrigen){
+        if(pilaOrigen.getNumElementos()==1){
+            pilaOrigen.desapilar();
+        }else if(!pilaOrigen.vacia()){
+            int elem = pilaOrigen.desapilar();
+            segunNumQuitarRecursivo(pilaOrigen);
+            pilaOrigen.apilar(elem);
+        }
+    }
+
 
 
     public void pruebaCopiaPilaRecursivo(Pila pila1) {
