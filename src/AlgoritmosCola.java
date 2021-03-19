@@ -32,17 +32,53 @@ public class AlgoritmosCola {
         //Completar
         int numElem = cola.getNumElementos();
         int media = 0;
-        cola.encolar(media);
-        for(int i = 0; i < numElem; i++){
-            int elem =cola.desencolar();
-            cola.encolar(elem);
-            media = media + elem;
+        if(!cola.vacia()){
+            for(int i = 0; i<numElem; i++){
+                int elem = cola.desencolar();
+                media = media + elem;
+                cola.encolar(elem);
+            }
+            media = media / numElem;
+            cola.encolar(media);
+            for(int i = 0; i < numElem; i++){
+                int elem = cola.desencolar();
+                media = media + elem;
+                cola.encolar(elem);
+            }
         }
     }
 
     public int numParesImpares(Cola cola, int valor) {
         //Completar
-        return 0;
+        if(!cola.vacia()){
+            int numElem = cola.getNumElementos();
+            int cont = 0;
+            if(valor==1){
+                //Devuelve el nº de valores impares
+                for(int i = 0; i < numElem; i++){
+                    int elem = cola.desencolar();
+                    if(elem % 2 != 0 && elem != 0){
+                        cont++;
+                    }
+                    cola.encolar(elem);
+                }
+                return cont;
+            }else if(valor==2){
+                //Devuelve el nº de valores pares
+                for(int i = 0; i < numElem; i++){
+                    int elem = cola.desencolar();
+                    if(elem % 2 == 0 && elem != 0){
+                        cont++;
+                    }
+                    cola.encolar(elem);
+                }
+                return cont;
+            }else{
+                return 0;
+            }
+        }else{
+            return 0;
+        }
     }
 
 
